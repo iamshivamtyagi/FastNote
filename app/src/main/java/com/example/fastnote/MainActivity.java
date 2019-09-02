@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("previousInput",et_input.getText().toString());
                 editor.commit();
+
+                Animation animation = new AlphaAnimation(10.0f,1.0f);
+                animation.setDuration(500);
+                buttonSave.startAnimation(animation);
+
+                Toast.makeText(getApplicationContext(),"Text Saved",Toast.LENGTH_LONG).show();
             }
         });
     }
